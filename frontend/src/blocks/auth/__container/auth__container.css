@@ -1,0 +1,13 @@
+.auth__container {
+  background-color: black;
+  width: 358px;
+}
+
+@media screen and (max-width: 370px) {
+
+  .auth__container {
+    background-color: black;
+    width: 260px;
+  }
+
+}

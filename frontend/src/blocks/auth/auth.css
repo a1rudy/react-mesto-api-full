@@ -1,0 +1,17 @@
+.auth {
+  background-color: black;
+  width: 100%;
+  padding: 60px 0 80px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 370px) {
+
+  .auth {
+    padding: 40px 0;
+  }
+
+}

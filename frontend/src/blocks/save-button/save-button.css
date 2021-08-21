@@ -1,0 +1,15 @@
+.save-button {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #000;
+  border-radius: 2px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+}
+
+.save-button:focus {
+  outline: none;
+}

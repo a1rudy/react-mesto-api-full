@@ -1,0 +1,9 @@
+.auth__login-link {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 5px;
+}
+
+.auth__login-link:hover {
+  opacity: .6;
+}

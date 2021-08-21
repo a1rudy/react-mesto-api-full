@@ -1,0 +1,16 @@
+.auth__save-button {
+  background-color: #fff;
+}
+
+.auth__save-button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 370px) {
+
+  .auth__save-button {
+    height: 46px;
+  }
+
+}

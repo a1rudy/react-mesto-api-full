@@ -1,0 +1,19 @@
+.header__logout-link {
+  background-color: #000;
+  align-self: center;
+  text-decoration: none;
+  color: #A9A9A9;
+  font-size: 18px;
+  line-height: 22px;
+  margin-left: 24px;
+  border: none;
+}
+
+@media screen and (max-width: 370px) {
+
+  .header__logout-link {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  
+}
