@@ -1,7 +1,7 @@
 class Api {
-  constructor({address, token}) {
+  constructor({address, headers}) {
     this._address = address;
-    this._token = token;
+    this._headers = headers;
   }
 
   _handleResponse(res) {
@@ -15,9 +15,7 @@ class Api {
   getUserProfile() {
     return fetch(`${this._address}/users/me`, {
       method: 'GET',
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers,
     })
     .then(this._handleResponse)
   }
@@ -26,10 +24,7 @@ class Api {
   setUserProfile(data) {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -42,10 +37,7 @@ class Api {
   setUserAvatar(data) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar,
       })
@@ -57,9 +49,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       method: 'GET',
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers,
     })
     .then(this._handleResponse)
   }
@@ -68,10 +58,7 @@ class Api {
   addNewCard(data) {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -84,9 +71,7 @@ class Api {
   removeCard(id) {
     return fetch(`${this._address}/cards/${id}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers,
     })
     .then(this._handleResponse)
   }
@@ -95,15 +80,16 @@ class Api {
   changeLikeCardStatus(id, isLiked) {
       return fetch(`${this._address}/cards/likes/${id}`, {
       method: isLiked ? 'DELETE' : 'PUT',
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers,
     })
   .then(this._handleResponse)
   }
 }
 
 export const api = new Api({
-  address: "https://mesto.nomoreparties.co/v1/cohort-22",
-  token: "68ca3bd5-b72c-4fc3-8560-fd3e63ce58a1",
+  address: "https://api.project-mesto-a1rudy.nomoredomains.monster",
+  headers: { 
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    'Content-Type': 'application/json', 
+  },
 });

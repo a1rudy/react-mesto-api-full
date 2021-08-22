@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.project-mesto-a1rudy.nomoredomains.monster';
+
 
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`);
 
