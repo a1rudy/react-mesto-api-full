@@ -1,6 +1,7 @@
 const allowedCors = [
   'https://api.project-mesto-a1rudy.nomoredomains.monster',
   'https://project-mesto-by-a1rudy.nomoredomains.monster',
+  'http://localhost:3000',
 ];
 
 module.exports = ((req, res, next) => {
