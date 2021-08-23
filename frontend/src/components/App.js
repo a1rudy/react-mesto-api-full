@@ -27,21 +27,20 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
-
+  console.log(cards)
 
   React.useEffect(() => {
-    if (loggedIn) {
-      Promise.all([api.getUserProfile(), api.getInitialCards()])
-        .then(([user, data]) => {
-          setCurrentUser(user);
-          setCards(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        checkToken();
-    }
-  }, [loggedIn]);
+    Promise.all([api.getUserProfile(), api.getInitialCards()])
+      .then(([user, data]) => {
+        setCurrentUser(user);
+        setCards(data.reverse());
+        history.push('/main')
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      checkToken();
+  }, [history, loggedIn]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
