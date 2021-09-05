@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from './Header'
 
 function Login({ handleLogin }) {
 
@@ -25,8 +23,6 @@ function Login({ handleLogin }) {
   
   return (
     <>
-      <Header><Link to="/signup" className="header__login-link">Регистрация</Link></Header>
-
       <section className='auth'>
         <div className='auth__container'>
         <h2 className="auth__title">Вход</h2>
