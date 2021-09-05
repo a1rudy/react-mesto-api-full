@@ -1,3 +1,18 @@
 .header__auth-container {
   display: flex;
 }
+
+@media screen and (max-width: 450px) {
+
+  .header__auth-container {
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    display: none;
+    border-bottom: 1px solid rgb(84, 84, 84, 0.7);
+  }
+  
+}

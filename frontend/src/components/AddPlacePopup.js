@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm'
 
-function AddPlacePopup({ isOpen, onClose, handleClickClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   
   const [namePlace, setNamePlace] = React.useState('');
   const [linkPlace, setLinkPlace] = React.useState('');
@@ -26,7 +26,7 @@ function AddPlacePopup({ isOpen, onClose, handleClickClose, onAddPlace }) {
   }
   
   return (
-    <PopupWithForm isOpen={isOpen} title={'Новое место'} name={'mesto'} buttonText={'Создать'} handleClickClose={handleClickClose} onSubmit={handleSubmit} onClose={onClose}>
+    <PopupWithForm isOpen={isOpen} title={'Новое место'} name={'mesto'} buttonText={'Создать'} onSubmit={handleSubmit} onClose={onClose}>
       <div className="popup__form-wrap">
         <input className="popup__input popup__input_type_top" onChange={handleChangeNamePlace} value={namePlace} id="title-input" type="text" placeholder="Название" name="name" minLength="2" maxLength="30" required />
         <span className="popup__input-error title-input-error"></span>

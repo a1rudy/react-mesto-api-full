@@ -1,20 +1,14 @@
 import React from 'react';
 import Card from '../components/Card';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDelete, cards, userData, handleLogout }) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDelete, cards }) {
   
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <>
-      <Header>
-        <p className="header__auth-email">{userData.email}</p>
-        <button onClick={handleLogout} className="header__logout-link">Выйти</button>
-      </Header>
-
       <div className="content">
         <section className="profile">
           <div className="profile__avatar-wrap">

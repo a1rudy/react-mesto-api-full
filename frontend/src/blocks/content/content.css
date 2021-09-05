@@ -1,13 +1,13 @@
 .content {
   max-width: 880px;
-  padding: 0 45px;
+  width: calc(100% - 90px);
   margin: auto;
 }
 
 @media screen and (max-width: 700px) {
 
   .content {
-    padding: 0 19px;
+    width: calc(100% - 38px);
   }
 
 }

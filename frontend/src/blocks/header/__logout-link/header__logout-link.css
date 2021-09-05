@@ -7,13 +7,13 @@
   line-height: 22px;
   margin-left: 24px;
   border: none;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 370px) {
-
-  .header__logout-link {
-    font-size: 14px;
-    line-height: 17px;
-  }
+@media screen and (max-width: 450px) { 
   
+  .header__logout-link {
+    margin-left: 0;
+  }
+
 }
