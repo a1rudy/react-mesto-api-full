@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useFormWithValidation } from "../hooks/useFormWithValidation";
 
 function Login({ handleLogin }) {
 
-  const [data, setData] = useState({
-    password: '',
-    email: '',
-  })
+  const { values, handleChange, errors, isValid, setValues } =
+  useFormWithValidation();
 
-  function handleChange(evt) {
-    const {name, value} = evt.target;
-    setData({
-      ...data,
-      [name]: value
-    });
-  }
+  const { email, password } = values;
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    const { password, email } = data;
-    handleLogin({ password, email });
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return;
+    }
+    isValid &&
+      handleLogin({ email, password }, () => {
+        setValues({});
+      });
+  };
   
   return (
     <>
@@ -27,8 +25,14 @@ function Login({ handleLogin }) {
         <div className='auth__container'>
         <h2 className="auth__title">Вход</h2>
             <form onSubmit={handleSubmit} className='auth__form' >
-              <input value={data.email} onChange={handleChange}  className='auth__input' id="email-input" type="email" placeholder="Email" name="email" minLength="2" maxLength="200" required />
-              <input value={data.password} onChange={handleChange}  className='auth__input' id="password-input" type="password" placeholder="Пароль" name="password" minLength="2" maxLength="200" required />
+              <div className='auth__form-wrap'>
+                <input value={email || ''} onChange={handleChange}  className='auth__input' id="email-input" type="email" placeholder="Email" name="email" minLength="2" maxLength="200" autoComplete="on" required />
+                <span className="auth__input-error name-input-error">{errors.email}</span>
+              </div>
+              <div className='auth__form-wrap'>
+                <input value={password || ''} onChange={handleChange}  className='auth__input' id="password-input" type="password" placeholder="Пароль" name="password" minLength="2" maxLength="200" autoComplete="on" required />
+                <span className="auth__input-error name-input-error">{errors.password}</span>
+              </div>
               <button className="auth__save-button save-button" type="submit"><span className="auth__button-span">Войти</span></button>
             </form>
         </div>

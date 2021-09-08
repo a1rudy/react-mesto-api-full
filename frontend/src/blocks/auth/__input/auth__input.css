@@ -1,21 +1,9 @@
 .auth__input {
   background-color: black;
+  width: 97%;
   border: none;
   font-family: inherit;
   border-bottom: 2px solid #ccc;
-  padding-bottom: 13px;
-  margin-bottom: 30px;
+  padding-bottom: 7px;
   color: #fff;
-}
-
-.auth__input:nth-child(2) {
-  margin-bottom: 216px;
-}
-
-@media screen and (max-width: 370px) {
-
-  .auth__input:nth-child(2) {
-    margin-bottom: 173px;
-  }
-
 }

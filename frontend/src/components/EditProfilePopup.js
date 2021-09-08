@@ -1,44 +1,35 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useFormWithValidation } from "../hooks/useFormWithValidation";
 
-function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
+function EditProfilePopup({ isOpen, onClose, onUpdateUser, isSending }) {
+
   const currentUser = React.useContext(CurrentUserContext);
 
+  const {values, handleChange, resetForm, errors, isValid} = useFormWithValidation();
+  
   React.useEffect(() => {
-    if (currentUser.about && currentUser.name) {
-      setName(currentUser.name);
-      setDescription(currentUser.about);
+    if (currentUser) {
+      resetForm(currentUser, {}, true);
     }
-  }, [currentUser, isOpen]);
-
-  function handleChangeName(evt) {
-    setName(evt.target.value);
-  }
-
-  function handleChangeAbout(evt) {
-    setDescription(evt.target.value);
-  }
+  }, [isOpen, currentUser, resetForm]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateUser({
-      name,
-      about: description,
-    });
+    isValid &&
+      onUpdateUser(values);
   }
 
   return(
-    <PopupWithForm isOpen={isOpen} title={'Редактировать профиль'} name={'profile'} buttonText={'Сохранить'} onSubmit={handleSubmit} onClose={onClose}>
+    <PopupWithForm isOpen={isOpen} title={'Редактировать профиль'} name={'profile'} buttonText={isSending ? 'Сохранение...' : 'Сохранить'} isDisabled={!isValid || isSending} onSubmit={handleSubmit} onClose={onClose} >
       <div className="popup__form-wrap">
-        <input className="popup__input popup__input_type_top" onChange={handleChangeName} value={name} id="name-input" type="text" placeholder="Имя" name="name" minLength="2" maxLength="40" required />
-        <span className="popup__input-error name-input-error"></span>
+        <input className="popup__input popup__input_type_top" onChange={handleChange} value={values.name || ''} id="name-input" type="text" placeholder="Имя" name="name" minLength="2" maxLength="40" required />
+        <span className="popup__input-error name-input-error">{errors.name || ''}</span>
       </div>
       <div className="popup__form-wrap">
-        <input className="popup__input popup__input_type_bottom" onChange={handleChangeAbout} value={description} id="about-input" type="text" placeholder="О себе" name="about" minLength="2" maxLength="200" required />
-        <span className="popup__input-error about-input-error"></span>
+        <input className="popup__input popup__input_type_bottom" onChange={handleChange} value={values.about || ''} id="about-input" type="text" placeholder="О себе" name="about" minLength="2" maxLength="200" required />
+        <span className="popup__input-error about-input-error">{errors.about || ''}</span>
       </div>
     </PopupWithForm>
   )
