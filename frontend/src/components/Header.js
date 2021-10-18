@@ -1,8 +1,10 @@
 import React from "react";
 import logoPath from "../images/header/header__logo.svg";
 import { Route, Link, Switch, useRouteMatch } from "react-router-dom";
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Header({ onSignOut, email }) {
+function Header({ onSignOut }) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [isMenuOpen, setMenuOpen] = React.useState(false);
 
   function toggleMenu() {
@@ -18,7 +20,7 @@ function Header({ onSignOut, email }) {
         <Route exact path='/main'>
           <button className='header__burger' type='button' aria-label='меню' onClick={toggleMenu}></button>
           <div className='header__auth-container'>
-            <p className='header__auth-email'>{email}</p>
+            <p className='header__auth-email'>{currentUser.email}</p>
             <button className='header__logout-link' onClick={onSignOut}>Выйти</button>
           </div>
         </Route>
